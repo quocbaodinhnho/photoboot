@@ -452,7 +452,7 @@ async function startSession() {
   busy = false;
   renderStickers();
   startBtn.disabled = false;
-  startBtn.textContent = "Chụp lại";
+  startBtn.textContent = "📸 Chụp lại";
   downloadBtn.disabled = false;
   resetBtn.disabled = false;
 }
@@ -505,7 +505,7 @@ function reset() {
   clearStrip();
   downloadBtn.disabled = true;
   resetBtn.disabled = true;
-  startBtn.textContent = "Bắt đầu chụp";
+  startBtn.textContent = "📸 Bắt đầu chụp";
 }
 
 // ---------- Sự kiện chung ----------
