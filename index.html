@@ -18,6 +18,7 @@
         <video id="video" autoplay playsinline muted></video>
         <div id="vignettePreview" class="vignette-preview hidden"></div>
         <img id="overlayPreview" class="overlay-preview hidden" alt="" />
+        <canvas id="stickerLayer" width="600" height="450"></canvas>
         <div id="countdown" class="countdown hidden"></div>
         <div id="flash" class="flash"></div>
         <div id="shotCounter" class="shot-counter hidden"></div>
@@ -55,6 +56,41 @@
         </div>
 
         <fieldset class="box">
+          <legend>🖼️ Sticker từ ảnh của bạn</legend>
+          <input type="file" id="stickerFile" accept="image/*" multiple />
+          <small id="stickerHint">Chọn ảnh bất kỳ → nó thành sticker. Kéo sticker trên khung camera để đặt quanh mặt hoặc viền.</small>
+
+          <div class="row">
+            <label>
+              Hình dạng
+              <select id="stickerShape">
+                <option value="circle">Cắt tròn</option>
+                <option value="round">Bo góc</option>
+                <option value="rect">Nguyên bản</option>
+              </select>
+            </label>
+            <label class="check"><input type="checkbox" id="stickerBorder" checked /> Viền trắng</label>
+          </div>
+
+          <div class="row">
+            <label>
+              Kích thước: <span id="stickerSizeVal">30</span>%
+              <input type="range" id="stickerSize" min="6" max="80" value="30" disabled />
+            </label>
+            <label>
+              Xoay: <span id="stickerRotVal">0</span>°
+              <input type="range" id="stickerRot" min="-180" max="180" value="0" disabled />
+            </label>
+          </div>
+
+          <div class="row">
+            <button id="stickerScatter" type="button" disabled>Rải quanh viền</button>
+            <button id="stickerDelete" type="button" disabled>Xoá sticker này</button>
+            <button id="stickerClear" type="button" disabled>Xoá tất cả</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="box">
           <legend>Hiệu ứng thêm</legend>
           <label class="check"><input type="checkbox" id="fxVignette" /> Tối viền</label>
           <label class="check"><input type="checkbox" id="fxGrain" /> Hạt phim</label>
@@ -62,7 +98,7 @@
         </fieldset>
 
         <fieldset class="box">
-          <legend>Filter bằng ảnh của bạn</legend>
+          <legend>Khung phủ toàn ảnh (PNG trong suốt)</legend>
           <input type="file" id="overlayFile" accept="image/*" />
           <div class="row">
             <label>
@@ -79,7 +115,7 @@
             </label>
             <button id="overlayClear" type="button" disabled>Xoá ảnh</button>
           </div>
-          <small>Nên dùng ảnh PNG nền trong suốt (khung, sticker, logo) để ra đẹp nhất.</small>
+          <small>Dùng cho ảnh khung/viền có nền trong suốt, phủ kín cả tấm ảnh.</small>
         </fieldset>
 
         <input id="caption" type="text" maxlength="30" placeholder="Dòng chữ dưới ảnh (tuỳ chọn)" />
