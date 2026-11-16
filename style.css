@@ -94,6 +94,19 @@ video {
 .controls label.check { flex-direction: row; align-items: center; gap: 8px; }
 input[type="file"] { font-size: .85rem; max-width: 100%; }
 .box .row button { padding: 8px 12px; font-size: .85rem; }
+.emoji-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: .85rem; }
+.controls .emoji-row button.emoji-btn,
+.emoji-btn {
+  padding: 4px 8px; font-size: 1.25rem; line-height: 1.2;
+  background: #1b1b2f; border: 1px solid #44446a; border-radius: 8px;
+}
+.emoji-btn:hover { background: #33335a; }
+
+input[type="color"] {
+  width: 44px; height: 34px; padding: 2px;
+  border: 1px solid #44446a; border-radius: 8px;
+  background: #1b1b2f; cursor: pointer;
+}
 
 .flash {
   position: absolute; inset: 0;
@@ -137,7 +150,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 }
 
 #strip {
-  width: 100%; max-width: 300px;
+  width: 100%; max-width: 380px;
   border-radius: 8px; background: #fff;
   box-shadow: 0 8px 30px rgba(0,0,0,.4);
 }
