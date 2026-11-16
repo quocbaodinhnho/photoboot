@@ -128,7 +128,13 @@ button {
 }
 button.primary { background: #ff6b9d; font-weight: 700; }
 button:disabled { opacity: .45; cursor: not-allowed; }
-#startBtn { flex: 1 1 100%; }
+#startBtn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px 18px;
+  font-size: 1.15rem;
+}
 
 #strip {
   width: 100%; max-width: 300px;
