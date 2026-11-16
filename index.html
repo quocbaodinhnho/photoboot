@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photobooth</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📸 Photobooth</h1>
+    <p>Chụp 4 tấm liên tiếp và tải về dải ảnh của bạn</p>
+  </header>
+
+  <main>
+    <section class="camera-panel">
+      <div class="video-wrap">
+        <video id="video" autoplay playsinline muted></video>
+        <div id="vignettePreview" class="vignette-preview hidden"></div>
+        <img id="overlayPreview" class="overlay-preview hidden" alt="" />
+        <div id="countdown" class="countdown hidden"></div>
+        <div id="flash" class="flash"></div>
+        <div id="shotCounter" class="shot-counter hidden"></div>
+      </div>
+
+      <div class="controls">
+        <label>
+          Bộ lọc
+          <select id="filter">
+            <option value="none">Gốc</option>
+            <option value="grayscale(1) contrast(1.1)">Đen trắng</option>
+            <option value="sepia(0.8)">Sepia</option>
+            <option value="saturate(1.6) contrast(1.05)">Rực rỡ</option>
+            <option value="brightness(1.1) saturate(0.8) hue-rotate(-10deg)">Dịu nhẹ</option>
+            <option value="contrast(1.3) brightness(0.95)">Tương phản</option>
+          </select>
+        </label>
+
+        <label>
+          Đếm ngược
+          <select id="delay">
+            <option value="3">3 giây</option>
+            <option value="5">5 giây</option>
+            <option value="2">2 giây</option>
+          </select>
+        </label>
+
+        <div class="frames">
+          <span>Khung</span>
+          <button class="frame-btn active" data-bg="#ffffff" data-fg="#222222" style="background:#ffffff" title="Trắng"></button>
+          <button class="frame-btn" data-bg="#111111" data-fg="#ffffff" style="background:#111111" title="Đen"></button>
+          <button class="frame-btn" data-bg="#ffd6e7" data-fg="#7a1f4b" style="background:#ffd6e7" title="Hồng"></button>
+          <button class="frame-btn" data-bg="#d6ecff" data-fg="#1f4b7a" style="background:#d6ecff" title="Xanh"></button>
+          <button class="frame-btn" data-bg="#fff3b0" data-fg="#6b5a00" style="background:#fff3b0" title="Vàng"></button>
+        </div>
+
+        <fieldset class="box">
+          <legend>Hiệu ứng thêm</legend>
+          <label class="check"><input type="checkbox" id="fxVignette" /> Tối viền</label>
+          <label class="check"><input type="checkbox" id="fxGrain" /> Hạt phim</label>
+          <label class="check"><input type="checkbox" id="fxLeak" /> Ánh sáng rò (light leak)</label>
+        </fieldset>
+
+        <fieldset class="box">
+          <legend>Filter bằng ảnh của bạn</legend>
+          <input type="file" id="overlayFile" accept="image/*" />
+          <div class="row">
+            <label>
+              Kiểu hiển thị
+              <select id="overlayFit">
+                <option value="cover">Phủ kín (cắt bớt)</option>
+                <option value="contain">Vừa khung</option>
+                <option value="stretch">Kéo giãn</option>
+              </select>
+            </label>
+            <label>
+              Độ đậm: <span id="opacityVal">100</span>%
+              <input type="range" id="overlayOpacity" min="10" max="100" value="100" />
+            </label>
+            <button id="overlayClear" type="button" disabled>Xoá ảnh</button>
+          </div>
+          <small>Nên dùng ảnh PNG nền trong suốt (khung, sticker, logo) để ra đẹp nhất.</small>
+        </fieldset>
+
+        <input id="caption" type="text" maxlength="30" placeholder="Dòng chữ dưới ảnh (tuỳ chọn)" />
+
+        <button id="startBtn" class="primary">Bắt đầu chụp</button>
+      </div>
+      <p id="error" class="error hidden"></p>
+    </section>
+
+    <section class="result-panel">
+      <h2>Dải ảnh của bạn</h2>
+      <canvas id="strip" width="660" height="1000"></canvas>
+      <div class="result-actions">
+        <button id="downloadBtn" class="primary" disabled>Tải về (PNG)</button>
+        <button id="resetBtn" disabled>Chụp lại</button>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="capture" class="hidden"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
